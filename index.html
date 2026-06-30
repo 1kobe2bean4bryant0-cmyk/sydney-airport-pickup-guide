@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>悉尼机场接机全攻略 — Jiaqi Zheng</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #f5f3f0;
+  color: #1a1a1a;
+  font-family: 'Noto Sans SC', sans-serif;
+  line-height: 1.8;
+}
+
+/* ===== 顶部横幅 ===== */
+.banner {
+  background: linear-gradient(135deg, #1a3a5c 0%, #2a5a8c 50%, #1a3a5c 100%);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+.banner h1 { font-size: 32px; font-weight: 900; margin-bottom: 8px; letter-spacing: 2px; }
+.banner .subtitle { font-size: 16px; opacity: 0.85; font-weight: 300; }
+.banner .ref-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 20px;
+  border-radius: 20px;
+  margin-top: 12px;
+  font-size: 14px;
+}
+.banner .ref-badge span { font-weight: 700; letter-spacing: 1px; }
+
+/* ===== 容器 ===== */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== 回执卡片 ===== */
+.receipt {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  margin: -30px auto 30px;
+  max-width: 680px;
+  padding: 30px;
+  position: relative;
+}
+.receipt .status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e8f5e9;
+}
+.receipt .status .dot {
+  width: 12px; height: 12px;
+  background: #4caf50;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.receipt .status .text { font-weight: 700; color: #2e7d32; font-size: 16px; }
+.receipt .status .ref { margin-left: auto; font-size: 13px; color: #888; }
+
+.receipt-row {
+  display: flex;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0eee8;
+}
+.receipt-row:last-child { border-bottom: none; }
+.receipt-row .label {
+  width: 130px;
+  font-size: 13px;
+  color: #888;
+  flex-shrink: 0;
+}
+.receipt-row .value {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+}
+.receipt-row .value.highlight { color: #1a5a8c; font-weight: 700; }
+.receipt-row .price { color: #2e7d32; font-weight: 700; font-size: 16px; }
+
+/* ===== 章节标题 ===== */
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 40px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #1a3a5c;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title .num {
+  background: #1a3a5c;
+  color: white;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* ===== 步骤卡片 ===== */
+.step {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+  padding: 24px;
+  border-left: 4px solid #1a3a5c;
+}
+.step .step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.step .step-num {
+  background: #1a3a5c;
+  color: white;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.step .step-title { font-size: 17px; font-weight: 700; }
+.step .step-body { font-size: 15px; color: #333; line-height: 2; }
+.step .step-body .tip {
+  background: #fff8e1;
+  border-left: 3px solid #ffc107;
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.step .step-body .warn {
+  background: #fbe9e7;
+  border-left: 3px solid #e53935;
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.step .step-body .good {
+  background: #e8f5e9;
+  border-left: 3px solid #4caf50;
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* ===== 出发前清单 ===== */
+.checklist {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0eee8;
+}
+.checklist-item:last-child { border-bottom: none; }
+.checklist-item .box {
+  width: 20px; height: 20px;
+  border: 2px solid #1a3a5c;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  cursor: pointer;
+}
+.checklist-item .box.checked {
+  background: #1a3a5c;
+  position: relative;
+}
+.checklist-item .box.checked::after {
+  content: '✓';
+  color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 16px;
+}
+
+/* ===== 联系信息 ===== */
+.contact-card {
+  background: linear-gradient(135deg, #1a3a5c, #2a5a8c);
+  color: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.contact-card h3 { font-size: 18px; margin-bottom: 12px; }
+.contact-card .contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 14px;
+}
+.contact-card .contact-row .icon { font-size: 20px; width: 30px; }
+.contact-card .contact-row a {
+  color: #90caf9;
+  text-decoration: none;
+}
+.contact-card .contact-row a:hover { text-decoration: underline; }
+
+/* ===== 地图示意 ===== */
+.map-area {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.map-area .map-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+.map-area .map-desc { font-size: 14px; color: #666; margin-top: 8px; }
+
+/* 简易路线图 */
+.route-svg {
+  max-width: 100%;
+  margin: 10px 0;
+}
+.route-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 14px;
+}
+.route-step .dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.route-step .dot.green { background: #4caf50; }
+.route-step .dot.blue { background: #1a3a5c; }
+.route-step .dot.orange { background: #ff9800; }
+.route-step .dot.red { background: #e53935; }
+.route-step .line {
+  width: 2px; height: 24px;
+  background: #ddd;
+  margin-left: 5px;
+}
+
+/* ===== 常见问题 ===== */
+.faq {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.faq-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0eee8;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-item .q { font-weight: 700; font-size: 15px; margin-bottom: 4px; color: #1a3a5c; }
+.faq-item .a { font-size: 14px; color: #555; line-height: 1.8; }
+
+/* ===== 尾部 ===== */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 13px;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 600px) {
+  .banner h1 { font-size: 24px; }
+  .receipt { padding: 20px; margin-top: -20px; }
+  .receipt-row { flex-direction: column; padding: 6px 0; }
+  .receipt-row .label { width: 100%; font-size: 12px; }
+  .receipt-row .value { font-size: 14px; }
+  .step { padding: 16px; }
+}
+
+/* ===== 打印按钮 ===== */
+.print-btn {
+  display: inline-block;
+  background: #1a3a5c;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 10px 0;
+  cursor: pointer;
+  border: none;
+}
+.print-btn:hover { background: #2a5a8c; }
+.print-btns {
+  text-align: center;
+  margin: 30px 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 顶部横幅 ===== -->
+<div class="banner">
+  <h1>🛬 悉尼机场接机全攻略</h1>
+  <div class="subtitle">麦考瑞大学 · 国际新生到达指南</div>
+  <div class="ref-badge">预订编号 <span>ZDTD1N</span> &nbsp;|&nbsp; 状态 <span>✅ 已确认</span></div>
+</div>
+
+<div class="container">
+
+  <!-- ===== 回执卡片 ===== -->
+  <div class="receipt">
+    <div class="status">
+      <div class="dot"></div>
+      <div class="text">✓ 接机预约已确认</div>
+      <div class="ref">Booked on June 30, 2026</div>
+    </div>
+
+    <div class="receipt-row">
+      <div class="label">航班信息</div>
+      <div class="value highlight">MF8432 · 厦门航空</div>
+    </div>
+    <div class="receipt-row">
+      <div class="label">到达时间</div>
+      <div class="value">2026年7月15日（周三）<br>上午 9:20</div>
+    </div>
+    <div class="receipt-row">
+      <div class="label">到达航站楼</div>
+      <div class="value">悉尼机场 T1 国际航站楼</div>
+    </div>
+    <div class="receipt-row">
+      <div class="label">乘客</div>
+      <div class="value">Jiaqi Zheng（郑佳骐）· 1人</div>
+    </div>
+    <div class="receipt-row">
+      <div class="label">额外行李</div>
+      <div class="value">0件（标准配额：2件托运+2件随身）</div>
+    </div>
+    <div class="receipt-row">
+      <div class="label">送至地址</div>
+      <div class="value highlight">122 Culloden Road, Marsfield<br><span style="font-size:13px;color:#888;font-weight:400;">Student Village North Ryde · 北莱德学生村</span></div>
+    </div>
+    <div class="receipt-row">
+      <div class="label">费用</div>
+      <div class="value price">$0.00（新生免费）</div>
+    </div>
+    <div class="receipt-row">
+      <div class="label">联系方式</div>
+      <div class="value" style="font-size:13px;">
+        Email: 2013529711@qq.com<br>
+        电话: +86 18990354023
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 出发前清单 ===== -->
+  <div class="section-title">
+    <span class="num">0</span>
+    出发前准备清单
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-item">
+      <div class="box"></div>
+      <div><strong>保存联系方式</strong><br>把下面的联系信息存到手机里</div>
+    </div>
+    <div class="checklist-item">
+      <div class="box"></div>
+      <div><strong>开通国际漫游</strong><br>确保你的中国手机号在澳洲能收短信/打电话，或者提前买好澳洲SIM卡</div>
+    </div>
+    <div class="checklist-item">
+      <div class="box"></div>
+      <div><strong>加接机方微信</strong><br>WeChat ID: <strong>w2airport</strong> ← 现在就加！到机场直接发微信</div>
+    </div>
+    <div class="checklist-item">
+      <div class="box"></div>
+      <div><strong>保存接机公司电话</strong><br>+61 455 800 800（WhatsApp/电话均可）</div>
+    </div>
+    <div class="checklist-item">
+      <div class="box"></div>
+      <div><strong>把回执打印出来</strong><br>或保存截图到手机相册，方便随时查看</div>
+    </div>
+  </div>
+
+  <!-- ===== 联系信息 ===== -->
+  <div class="section-title">
+    <span class="num">!</span>
+    紧急联系
+  </div>
+
+  <div class="contact-card">
+    <h3>📞 接机服务方 2-Airport（24小时在线）</h3>
+    <div class="contact-row">
+      <span class="icon">💬</span>
+      <span><strong>微信（推荐）</strong> &nbsp; <a href="#">w2airport</a><br><span style="font-size:12px;opacity:0.7;">← 现在就加，到机场直接发消息</span></span>
+    </div>
+    <div class="contact-row">
+      <span class="icon">📱</span>
+      <span><strong>电话 / WhatsApp</strong> &nbsp; <a href="tel:+61455800800">+61 455 800 800</a></span>
+    </div>
+    <div class="contact-row">
+      <span class="icon">💻</span>
+      <span><strong>在线客服</strong> &nbsp; 2-airport 官网 Live Chat</span>
+    </div>
+  </div>
+
+  <!-- ===== 第一章：下飞机到出关 ===== -->
+  <div class="section-title">
+    <span class="num">1</span>
+    下飞机 → 过海关 → 取行李
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-title">下飞机，跟着「Arrivals」走</div>
+    </div>
+    <div class="step-body">
+      下飞机后只有一条路，跟着人潮和指示牌走就行。<br>
+      要找的牌子：<strong>"Arrivals"（到达）</strong> 和 <strong>"Baggage Claim"（行李提取）</strong>。<br>
+      全程都有中文指示牌，不用担心语言问题。
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-title">过海关（护照检查）</div>
+    </div>
+    <div class="step-body">
+      到了 passport control 区域，会排两条队：
+      <ul style="margin:8px 0 0 20px;">
+        <li><strong>ePassport（电子护照通道）</strong> — 如果你是中国新版护照（封面有芯片标志 ✅），可以走自助机</li>
+        <li><strong>人工通道</strong> — 把所有航班上填好的入境卡和护照一起递给工作人员</li>
+      </ul>
+      <div class="tip">💡 在飞机上记得向空姐要一张 <strong>Australian Incoming Passenger Card（入境卡）</strong>，提前填好。</div>
+      <div class="tip">💡 海关人员可能会问你来澳洲的目的，回答 "Study at Macquarie University" 即可。</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-title">取行李</div>
+    </div>
+    <div class="step-body">
+      过了海关后进入行李大厅。<br>
+      找到你航班号 <strong>MF8432</strong> 对应的行李转盘（Baggage Carousel），等行李出来。<br>
+      标准免费行李额：<strong>2件托运 + 2件随身</strong>。
+      <div class="good">✅ 你预约时填了 0 件额外行李，不用额外付费。</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <div class="step-title">过海关检疫</div>
+    </div>
+    <div class="step-body">
+      取完行李后要经过最后一道检疫检查。<br>
+      有申报的物品走红色通道，没有走绿色通道。<br>
+      <div class="warn">⚠️ 澳洲对食品、药品、动植物制品查得很严。带了任何吃的中药保健品等一定要申报。</div>
+      <div class="tip">💡 如果不确定要不要申报，一律选「要申报」，最多只是被扔掉，不会罚款。</div>
+    </div>
+  </div>
+
+  <!-- ===== 第二章：找司机 ===== -->
+  <div class="section-title">
+    <span class="num">2</span>
+    出关后 → 找到接机人员
+  </div>
+
+  <div class="step" style="border-left-color: #e53935;">
+    <div class="step-header">
+      <div class="step-num" style="background:#e53935;">5</div>
+      <div class="step-title">出到到达大厅，给接机方发消息</div>
+    </div>
+    <div class="step-body">
+      <strong>这一步最重要！</strong> 走出行李提取区后，你就到了 <strong>国际到达大厅（Arrivals Hall）</strong>。<br><br>
+      现在这样做：
+      <ol style="margin:8px 0 0 20px;">
+        <li>连上 <strong>悉尼机场免费WiFi</strong>（选择 "Sydney Airport Free WiFi"）</li>
+        <li>打开微信，给 <strong>w2airport</strong> 发消息：「我已到达悉尼T1，航班MF8432，正在取行李/已出关」</li>
+        <li>或者打电话到 <strong>+61 455 800 800</strong></li>
+      </ol>
+      <div class="warn">⚠️ 接机公司说落地后1小时才是接机时间。如果你9:20落地，大约10:20司机到达。提前联系他们会安排时间。</div>
+      <div class="good">✅ 不用着急，司机了解你的航班时间，会等你。</div>
+    </div>
+  </div>
+
+  <div class="step" style="border-left-color: #e53935;">
+    <div class="step-header">
+      <div class="step-num" style="background:#e53935;">6</div>
+      <div class="step-title">前往国际学生服务台（Help Desk）</div>
+    </div>
+    <div class="step-body">
+      <strong>接机信息明确说：</strong> 取完行李出关后，走到 <strong>"International Student Help Desk"（国际学生服务台）</strong>，位置在 <strong>到达口A（Arrivals A）的前方</strong>。<br><br>
+      这里有几个选择：
+      <ul style="margin:8px 0 0 20px;">
+        <li><strong>需要SIM卡：</strong> 先在Help Desk办澳洲手机卡（有工作人员协助快速激活）</li>
+        <li><strong>不需要SIM卡：</strong> 直接在Help Desk附近等司机</li>
+      </ul>
+      <div class="tip">💡 <strong>推荐方案：</strong> 让司机到International Student Help Desk来找你。发微信告诉接机方「我在International Student Help Desk等你」。</div>
+      <div class="tip">💡 如果你没有澳洲手机号，在Help Desk办一张临时SIM卡最方便，他们会帮你 <strong>express activation（快速激活）</strong>。</div>
+    </div>
+  </div>
+
+  <div class="step" style="border-left-color: #e53935;">
+    <div class="step-header">
+      <div class="step-num" style="background:#e53935;">7</div>
+      <div class="step-title">和司机碰头</div>
+    </div>
+    <div class="step-body">
+      司机会在以下两个地点之一找到你：
+      <ul style="margin:8px 0 0 20px;">
+        <li><strong>首选：International Student Help Desk 前</strong>（根据接机邮件Step 2-3）</li>
+        <li><strong>备选：到达大厅的麦当劳（McDonald's）门口</strong>（根据FAQ信息）</li>
+      </ul>
+      司机会举着写有你名字的牌子：<strong>"Jiaqi Zheng"</strong>。<br><br>
+      <div class="good">✅ 如果5分钟后还没看到司机，用微信或电话联系他们 +61 455 800 800。</div>
+      <div class="good">✅ 可以使用 <strong>2-airport app</strong> 追踪司机实时位置（如果有国内提前下好的话）。</div>
+    </div>
+  </div>
+
+  <!-- ===== 线路图 ===== -->
+  <div class="section-title">
+    <span class="num">3</span>
+    全程路线示意
+  </div>
+
+  <div class="map-area">
+    <div class="map-title">🛫 厦门 → 🛬 悉尼 → 🏠 学生村</div>
+
+    <div class="route-step">
+      <div class="dot green"></div>
+      <span><strong>① 厦门高崎机场</strong><br>登机 MF8432</span>
+    </div>
+    <div class="route-step">
+      <div class="line"></div>
+    </div>
+    <div class="route-step">
+      <div class="dot blue"></div>
+      <span><strong>② 悉尼机场 T1 国际到达</strong><br>下飞机 → 海关 → 取行李 → 出关</span>
+    </div>
+    <div class="route-step">
+      <div class="line"></div>
+    </div>
+    <div class="route-step">
+      <div class="dot orange"></div>
+      <span><strong>③ 到达大厅</strong><br>International Student Help Desk 前<br>或麦当劳门口 → 和司机碰头</span>
+    </div>
+    <div class="route-step">
+      <div class="line"></div>
+    </div>
+    <div class="route-step">
+      <div class="dot red"></div>
+      <span><strong>④ 122 Culloden Road, Marsfield</strong><br>Student Village North Ryde<br>司机送到公寓楼下 🏁</span>
+    </div>
+  </div>
+
+  <!-- ===== 常见问题 ===== -->
+  <div class="section-title">
+    <span class="num">?</span>
+    常见问题
+  </div>
+
+  <div class="faq">
+    <div class="faq-item">
+      <div class="q">下飞机后第一件事做什么？</div>
+      <div class="a">连机场WiFi，给接机方发微信（w2airport）说你到了。不用着急，司机看你航班已落地才会出发，你落地后大约1小时他到。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">我没有澳洲手机号怎么办？</div>
+      <div class="a">两个方案：<br>① 出发前在淘宝买一张澳洲临时SIM卡（Optus/Telstra预付费），上飞机前换好。<br>② 出关后在 <strong>International Student Help Desk</strong> 免费办理快速激活。<br>③ 只连WiFi用微信联系也够用。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">行李太多推车不方便怎么见司机？</div>
+      <div class="a">悉尼机场有免费行李推车。推着车出到达大厅完全没问题，司机会在Help Desk附近等，直接上车。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">McDonald's和Help Desk分别在哪儿？</div>
+      <div class="a">两个都在 <strong>T1 到达大厅（Arrivals Hall）</strong> 同一层，距离很近（步行不到1分钟）。麦当劳在到达大厅左侧，Help Desk在到达口A前方。你和司机说在哪个位置等都可以。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">怎样才能更快找到司机？</div>
+      <div class="a">① <strong>提前加微信 w2airport</strong>（现在就加！）<br>② 到行李提取区时就发微信说「我在等行李了」<br>③ 出关后再发一次「我出关了，在Help Desk等你」<br>④ 司机到了会联系你，告诉你他在哪个位置。</div>
+    </div>
+  </div>
+
+  <!-- ===== 打印/分享按钮 ===== -->
+  <div class="print-btns">
+    <button class="print-btn" onclick="window.print()">🖨️ 打印 / 保存为PDF</button>
+    <button class="print-btn" onclick="sharePage()">📤 分享给朋友</button>
+  </div>
+
+  <!-- ===== 尾部 ===== -->
+  <div class="footer">
+    📋 预订编号：ZDTD1N · 航班 MF8432 · 2026年7月15日 09:20<br>
+    🏠 122 Culloden Road, Marsfield · Student Village North Ryde<br><br>
+    信息基于 Macquarie University Airport Welcome Service 官方确认邮件<br>
+    如有变动请以接机方 2-Airport 最新通知为准
+  </div>
+
+</div>
+
+<script>
+// 清单点击切换
+document.querySelectorAll('.checklist-item .box').forEach(box => {
+  box.addEventListener('click', function() {
+    this.classList.toggle('checked');
+  });
+});
+
+// 分享功能
+function sharePage() {
+  if (navigator.share) {
+    navigator.share({
+      title: '悉尼机场接机全攻略 - Jiaqi Zheng',
+      text: '麦考瑞大学新生接机攻略，从下飞机到找到司机的完整教程',
+      url: window.location.href
+    }).catch(() => {});
+  } else {
+    // fallback: 复制链接
+    const input = document.createElement('input');
+    input.value = window.location.href;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    alert('链接已复制到剪贴板！');
+  }
+}
+</script>
+
+</body>
+</html>
